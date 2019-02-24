@@ -16,7 +16,7 @@ MemeChat contains platform-specific elements for Android and iOS.
 5. Finally, click "Storage" in the left-hand menu.  Enable it.
 
 ## Android Setup
-- Create an app within your Firebase instance for Android, with package name com.yourcompany.memechat 
+- Create an app within your Firebase instance for Android, with package name com.github.simonpham.memechat 
 - Follow instructions to download google-services.json, and place it into memechat/android/app/
 - Run the following command to get your SHA-1 key:
 ```
@@ -26,7 +26,7 @@ keytool -exportcert -list -v \
 - In the Firebase console, in the settings of your Android app, add your SHA-1 key by clicking "Add Fingerprint".
 
 ## iOS Setup
-- Create an app within your Firebase instance for iOS, with package name com.yourcompany.memechat
+- Create an app within your Firebase instance for iOS, with package name com.github.simonpham.memechat
 - Follow instructions to download GoogleService-Info.plist, and place it into memechat/ios/Runner
 - Open memechat/ios/Runner/Info.plist. Locate the CFBundleURLSchemes key. The second item in the array value of this key is specific to the Firebase instance. Replace it with the value for REVERSED_CLIENT_ID from GoogleService-Info.plist
 

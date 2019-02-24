@@ -25,8 +25,8 @@
                     <string>Editor</string>
                     <key>CFBundleURLSchemes</key>
                     <array>
-                            <string>com.yourcompany.memechat</string>
-                            <string>com.googleusercontent.apps.735297822872-5f6gme0kt6r0k077ibcfcvm7d4ha1hlb</string>
+                            <string>com.github.simonpham.memechat</string>
+                            <string>com.googleusercontent.apps.29571805252-75odscqa1ev45bki5duietafcacm5mp8</string>
                     </array>
             </dict>
     </array>

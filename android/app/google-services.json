@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "29571805252",
+    "firebase_url": "https://memechat-d53ac.firebaseio.com",
+    "project_id": "memechat-d53ac",
+    "storage_bucket": "memechat-d53ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29571805252:android:56e6248e6a8cd9df",
+        "android_client_info": {
+          "package_name": "com.github.simonpham.memechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29571805252-fskf1554h4dcubvnaugq1lo2iiarqucp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.simonpham.memechat",
+            "certificate_hash": "64a1e8e7324721b318e1c74fdc08403faffc5e53"
+          }
+        },
+        {
+          "client_id": "29571805252-6vbljbpu3pikq06fr5gqrfjj7mcvfm16.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqiysSr7W85C1j21qqE9ACkccvzyadn20"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29571805252-6vbljbpu3pikq06fr5gqrfjj7mcvfm16.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
