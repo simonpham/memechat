@@ -16,6 +16,8 @@ import 'package:image_picker/image_picker.dart';
 import 'type_meme.dart';
 import 'platform_adaptive.dart';
 
+const _name = 'Simon';
+
 void main() {
   runApp(new MyApp());
 }
@@ -25,10 +27,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Memechat',
-      theme: defaultTargetPlatform == TargetPlatform.iOS
-          ? kIOSTheme
-          : kDefaultTheme,
-      home: ChatScreen(),
+      // TODO: Add platform adaptive theme
+//      theme: defaultTargetPlatform == TargetPlatform.iOS
+//          ? kIOSTheme
+//          : kDefaultTheme,
+      home: Container(color: Colors.black),
+      // TODO: Add ChatScreen
+//      home: ChatScreen(),
     );
   }
 }
@@ -50,18 +55,18 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _googleSignIn.signInSilently();
-    FirebaseAuth.instance.signInAnonymously().then((user) {
-      fireBaseSubscription =
-          _messagesReference.onChildAdded.listen((Event event) {
-        var val = event.snapshot.value;
-        _addMessage(
-            name: val['sender']['name'],
-            senderImageUrl: val['sender']['imageUrl'],
-            text: val['text'],
-            imageUrl: val['imageUrl'],
-            textOverlay: val['textOverlay']);
-      });
-    });
+//    FirebaseAuth.instance.signInAnonymously().then((user) {
+//      fireBaseSubscription =
+//          _messagesReference.onChildAdded.listen((Event event) {
+//        var val = event.snapshot.value;
+//        _addMessage(
+//            name: val['sender']['name'],
+//            senderImageUrl: val['sender']['imageUrl'],
+//            text: val['text'],
+//            imageUrl: val['imageUrl'],
+//            textOverlay: val['textOverlay']);
+//      });
+//    });
   }
 
   @override
@@ -80,17 +85,21 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   }
 
   void _handleSubmitted(String text) {
-    _textController.clear();
-    _googleSignIn.signIn().then((user) {
-      var message = {
-        'sender': {'name': user.displayName, 'imageUrl': user.photoUrl},
-        'text': text,
-      };
-      _messagesReference.push().set(message);
-    });
-    setState(() {
-      _isComposing = false;
-    });
+    // TODO: Fill out this function
+//    _textController.clear();
+//    PRE-PLUGINS
+//    _addMessage(name: _name, text: text);
+//    POST-PLUGINS
+//    _googleSignIn.signIn().then((user) {
+//      var message = {
+//        'sender': {'name': user.displayName, 'imageUrl': user.photoUrl},
+//        'text': text,
+//      };
+//      _messagesReference.push().set(message);
+//    });
+//    setState(() {
+//      _isComposing = false;
+//    });
   }
 
   void _addMessage(
@@ -99,20 +108,23 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
       String imageUrl,
       String textOverlay,
       String senderImageUrl}) {
-    var animationController = AnimationController(
-      duration: Duration(milliseconds: 700),
-      vsync: this,
-    );
+    // TODO: initialize animationController
+    var animationController;
+//    animationController = AnimationController(
+//      duration: Duration(milliseconds: 700),
+//      vsync: this,
+//    );
     var sender = ChatUser(name: name, imageUrl: senderImageUrl);
     var message = ChatMessage(
-        sender: sender,
-        text: text,
-        imageUrl: imageUrl,
-        textOverlay: textOverlay,
-        animationController: animationController);
-    setState(() {
-      _messages.insert(0, message);
-    });
+      sender: sender,
+      text: text,
+      imageUrl: imageUrl,
+      textOverlay: textOverlay,
+    );
+    // TODO: Insert message
+//    setState(() {
+//      _messages.insert(0, message);
+//    });
     if (imageUrl != null) {
       NetworkImage image = NetworkImage(imageUrl);
       image
@@ -126,23 +138,22 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   }
 
   Future<Null> _handlePhotoButtonPressed() async {
-    var account = await _googleSignIn.signIn();
-    var imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
-    if (imageFile == null) {
-      return;
-    }
-    var random = Random().nextInt(10000);
-    var ref = FirebaseStorage.instance.ref().child('image_$random.jpg');
-    ref.putFile(imageFile);
-    var textOverlay = await Navigator.push(context, TypeMemeRoute(imageFile));
-    if (textOverlay == null) return;
-    String downloadUrl = await ref.getDownloadURL();
-    var message = {
-      'sender': {'name': account.displayName, 'imageUrl': account.photoUrl},
-      'imageUrl': downloadUrl.toString(),
-      'textOverlay': textOverlay,
-    };
-    _messagesReference.push().set(message);
+    // TODO: Fill out this function
+//    var account = await _googleSignIn.signIn();
+//    var imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+//    if (imageFile == null) return;
+//    var random = Random().nextInt(10000);
+//    var ref = FirebaseStorage.instance.ref().child('image_$random.jpg');
+//    ref.putFile(imageFile);
+//    var textOverlay = await Navigator.push(context, TypeMemeRoute(imageFile));
+//    if (textOverlay == null) return;
+//    String downloadUrl = await ref.getDownloadURL();
+//    var message = {
+//      'sender': {'name': account.displayName, 'imageUrl': account.photoUrl},
+//      'imageUrl': downloadUrl.toString(),
+//      'textOverlay': textOverlay,
+//    };
+//    _messagesReference.push().set(message);
   }
 
   Widget _buildTextComposer() {
@@ -153,20 +164,22 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
             child: Row(children: [
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 4.0),
-                child: IconButton(
-                  icon: Icon(Icons.photo),
-                  onPressed: _handlePhotoButtonPressed,
-                ),
+                // TODO: Add photo icon button
+//                child: IconButton(
+//                  icon: Icon(Icons.photo),
+//                  onPressed: _handlePhotoButtonPressed,
+//                ),
               ),
-              Flexible(
-                child: TextField(
-                  controller: _textController,
-                  onSubmitted: _handleSubmitted,
-                  onChanged: _handleMessageChanged,
-                  decoration:
-                      InputDecoration.collapsed(hintText: 'Send a message'),
-                ),
-              ),
+              // TODO: Add TextField
+//              Flexible(
+//                child: TextField(
+//                  controller: _textController,
+//                  onSubmitted: _handleSubmitted,
+//                  onChanged: _handleMessageChanged,
+//                  decoration:
+//                      InputDecoration.collapsed(hintText: 'Send a message'),
+//                ),
+//              ),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 4.0),
                   child: PlatformAdaptiveButton(
@@ -230,19 +243,23 @@ class ChatMessageListItem extends StatelessWidget {
   final ChatMessage message;
 
   Widget build(BuildContext context) {
-    return SizeTransition(
-        sizeFactor: CurvedAnimation(
-            parent: message.animationController, curve: Curves.easeOut),
-        axisAlignment: 0.0,
-        child: Container(
+    return
+//      SizeTransition(
+//        sizeFactor: CurvedAnimation(
+//            parent: message.animationController, curve: Curves.easeOut),
+//        axisAlignment: 0.0,
+//        child:
+        Container(
           margin: const EdgeInsets.symmetric(vertical: 10.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 16.0),
-                child: CircleAvatar(
-                    backgroundImage: NetworkImage(message.sender.imageUrl)),
+                // TODO: add avatar
+                child: CircleAvatar(),
+//                child: CircleAvatar(
+//                    backgroundImage: NetworkImage(message.sender.imageUrl)),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -256,7 +273,8 @@ class ChatMessageListItem extends StatelessWidget {
               ),
             ],
           ),
-        ));
+//      ),
+    );
   }
 }
 
