@@ -60,6 +60,9 @@ dependencies {
     androidTestImplementation 'com.android.support:support-annotations:25.0.0'
     androidTestImplementation 'com.android.support.test:runner:0.5'
     androidTestImplementation 'com.android.support.test:rules:0.5'
+    implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.google.firebase:firebase-storage:16.0.5'
+    implementation 'com.google.firebase:firebase-database:16.0.6'
 }
 
 apply plugin: 'com.google.gms.google-services'
